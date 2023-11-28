@@ -22,17 +22,17 @@ const generarNombreCompleto = (
 const integrantes = document.querySelectorAll("dl");
 
 const datosCompletos1 = generarNombreCompleto(
-  integrantes[0].children[2],
-  integrantes[0].children[4],
-  integrantes[0].children[6],
-  integrantes[0].children[8]
+  integrantes[0].children[1],
+  integrantes[0].children[3],
+  integrantes[0].children[5],
+  integrantes[0].children[7]
 );
 
 const datosCompletos2 = generarNombreCompleto(
-  integrantes[1].children[2],
-  integrantes[1].children[4],
-  integrantes[1].children[6],
-  integrantes[1].children[8]
+  integrantes[1].children[1],
+  integrantes[1].children[3],
+  integrantes[1].children[5],
+  integrantes[1].children[7]
 );
 
 console.log(
@@ -46,10 +46,10 @@ const compararNombres = (nodo1, nodo2) =>
   comparar(obtenerValor(nodo1), obtenerValor(nodo2));
 
 if (
-  compararNombres(integrantes[0].children[2], integrantes[1].children[2]) ||
-  compararNombres(integrantes[0].children[2], integrantes[1].children[4]) ||
-  compararNombres(integrantes[0].children[4], integrantes[1].children[2]) ||
-  compararNombres(integrantes[0].children[4], integrantes[1].children[4])
+  compararNombres(integrantes[0].children[1], integrantes[1].children[1]) ||
+  compararNombres(integrantes[0].children[1], integrantes[1].children[3]) ||
+  compararNombres(integrantes[0].children[3], integrantes[1].children[1]) ||
+  compararNombres(integrantes[0].children[3], integrantes[1].children[3])
 ) {
   console.log("Los nombres son iguales");
   let color = prompt("Los nombres son iguales!\nElegir un color:");
@@ -57,28 +57,28 @@ if (
   const destacarNombresCoincidentes = (...nodos) =>
     nodos.forEach((nodo) => (nodo.style.color = color));
 
-  if (compararNombres(integrantes[0].children[2], integrantes[1].children[2])) {
+  if (compararNombres(integrantes[0].children[1], integrantes[1].children[1])) {
     destacarNombresCoincidentes(
-      integrantes[0].children[2],
-      integrantes[1].children[2]
+      integrantes[0].children[1],
+      integrantes[1].children[1]
     );
   }
-  if (compararNombres(integrantes[0].children[2], integrantes[1].children[4])) {
+  if (compararNombres(integrantes[0].children[1], integrantes[1].children[3])) {
     destacarNombresCoincidentes(
-      integrantes[0].children[2],
-      integrantes[1].children[4]
+      integrantes[0].children[1],
+      integrantes[1].children[3]
     );
   }
-  if (compararNombres(integrantes[0].children[4], integrantes[1].children[2])) {
+  if (compararNombres(integrantes[0].children[3], integrantes[1].children[1])) {
     destacarNombresCoincidentes(
-      integrantes[0].children[4],
-      integrantes[1].children[2]
+      integrantes[0].children[3],
+      integrantes[1].children[1]
     );
   }
-  if (compararNombres(integrantes[0].children[4], integrantes[1].children[4])) {
+  if (compararNombres(integrantes[0].children[3], integrantes[1].children[3])) {
     destacarNombresCoincidentes(
-      integrantes[0].children[4],
-      integrantes[1].children[4]
+      integrantes[0].children[3],
+      integrantes[1].children[3]
     );
   }
 } else {
@@ -87,47 +87,47 @@ if (
 
 if (confirm("Desea comparar los apellidos?") == true) {
   if (
-    compararNombres(integrantes[0].children[6], integrantes[1].children[6]) ||
-    compararNombres(integrantes[0].children[6], integrantes[1].children[8]) ||
-    compararNombres(integrantes[0].children[8], integrantes[1].children[6]) ||
-    compararNombres(integrantes[0].children[8], integrantes[1].children[8])
+    compararNombres(integrantes[0].children[5], integrantes[1].children[5]) ||
+    compararNombres(integrantes[0].children[5], integrantes[1].children[7]) ||
+    compararNombres(integrantes[0].children[7], integrantes[1].children[5]) ||
+    compararNombres(integrantes[0].children[7], integrantes[1].children[7])
   ) {
     console.log("Los apellidos son iguales");
     let color = prompt("Los apellidos son iguales!\nElegir un color:");
 
-    const destacarApellidosCoincidentes = (...nodos) =>
+    const destacarNombresCoincidentes = (...nodos) =>
       nodos.forEach((nodo) => (nodo.style.color = color));
 
     if (
-      compararNombres(integrantes[0].children[6], integrantes[1].children[6])
+      compararNombres(integrantes[0].children[5], integrantes[1].children[5])
     ) {
-      destacarApellidosCoincidentes(
-        integrantes[0].children[6],
-        integrantes[1].children[6]
+      destacarNombresCoincidentes(
+        integrantes[0].children[5],
+        integrantes[1].children[5]
       );
     }
     if (
-      compararNombres(integrantes[0].children[6], integrantes[1].children[8])
+      compararNombres(integrantes[0].children[5], integrantes[1].children[7])
     ) {
-      destacarApellidosCoincidentes(
-        integrantes[0].children[6],
-        integrantes[1].children[8]
+      destacarNombresCoincidentes(
+        integrantes[0].children[5],
+        integrantes[1].children[7]
       );
     }
     if (
-      compararNombres(integrantes[0].children[8], integrantes[1].children[6])
+      compararNombres(integrantes[0].children[7], integrantes[1].children[5])
     ) {
-      destacarApellidosCoincidentes(
-        integrantes[0].children[8],
-        integrantes[1].children[6]
+      destacarNombresCoincidentes(
+        integrantes[0].children[7],
+        integrantes[1].children[5]
       );
     }
     if (
-      compararNombres(integrantes[0].children[8], integrantes[1].children[8])
+      compararNombres(integrantes[0].children[7], integrantes[1].children[7])
     ) {
-      destacarApellidosCoincidentes(
-        integrantes[0].children[8],
-        integrantes[1].children[8]
+      destacarNombresCoincidentes(
+        integrantes[0].children[7],
+        integrantes[1].children[7]
       );
     }
   } else {
