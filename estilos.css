@@ -1,0 +1,17 @@
+.integrante {
+    border: 2px solid #333;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+dt {
+    font-weight: bold;
+}
+
+.integrante {
+    background-color: #c0baba;
+}
+
+.integrante:nth-child(odd) {
+    background-color: #e7b3b3;
+}
