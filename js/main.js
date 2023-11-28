@@ -85,7 +85,52 @@ if (
   console.log("Los nombres son diferentes");
 }
 
-if (confirm("Desea comparar los apellidos?")) {
-  // Lógica para comparar y destacar apellidos
-  // ...
+if (confirm("Desea comparar los apellidos?") == true) {
+  if (
+    compararNombres(integrantes[0].children[6], integrantes[1].children[6]) ||
+    compararNombres(integrantes[0].children[6], integrantes[1].children[8]) ||
+    compararNombres(integrantes[0].children[8], integrantes[1].children[6]) ||
+    compararNombres(integrantes[0].children[8], integrantes[1].children[8])
+  ) {
+    console.log("Los apellidos son iguales");
+    let color = prompt("Los apellidos son iguales!\nElegir un color:");
+
+    const destacarApellidosCoincidentes = (...nodos) =>
+      nodos.forEach((nodo) => (nodo.style.color = color));
+
+    if (
+      compararNombres(integrantes[0].children[6], integrantes[1].children[6])
+    ) {
+      destacarApellidosCoincidentes(
+        integrantes[0].children[6],
+        integrantes[1].children[6]
+      );
+    }
+    if (
+      compararNombres(integrantes[0].children[6], integrantes[1].children[8])
+    ) {
+      destacarApellidosCoincidentes(
+        integrantes[0].children[6],
+        integrantes[1].children[8]
+      );
+    }
+    if (
+      compararNombres(integrantes[0].children[8], integrantes[1].children[6])
+    ) {
+      destacarApellidosCoincidentes(
+        integrantes[0].children[8],
+        integrantes[1].children[6]
+      );
+    }
+    if (
+      compararNombres(integrantes[0].children[8], integrantes[1].children[8])
+    ) {
+      destacarApellidosCoincidentes(
+        integrantes[0].children[8],
+        integrantes[1].children[8]
+      );
+    }
+  } else {
+    console.log("Los apellidos son diferentes");
+  }
 }
