@@ -6,6 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.log("Los nombres son diferentes");
   }
+
+  if (confirm("Desea comparar los apellidos?") == true) {
+    if (compararApellidos("formIntegrante1", "formIntegrante2") == true) {
+      console.log("Los apellidos son iguales");
+    } else {
+      console.log("Los apellidos son diferentes");
+    }
+  }
 });
 
 function generarNombre(formId) {
@@ -45,6 +53,22 @@ function compararNombres(formId1, formId2) {
   }
 }
 
+function compararApellidos(formId1, formId2) {
+  let integrante1 = generarNombre(formId1);
+  let integrante2 = generarNombre(formId2);
+
+  if (
+    integrante1.apellido == integrante2.apellido ||
+    integrante1.segundoApellido == integrante2.segundoApellido ||
+    integrante1.apellido == integrante2.segundoApellido ||
+    integrante1.segundoApellido == integrante2.apellido
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function mostrarNombresCompletos(formId1, formId2) {
   console.log(`
   -----
@@ -55,5 +79,5 @@ function mostrarNombresCompletos(formId1, formId2) {
 }
 
 function EventoClickFormulario(event, formId) {
-  event.preventDefault();
+  mostrarNombresCompletos("formIntegrante1", "formIntegrante2");
 }
