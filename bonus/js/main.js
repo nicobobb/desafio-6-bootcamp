@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
+  validarDatos();
+});
+
+function validarDatos() {
+  resetColors();
   mostrarNombresCompletos("formIntegrante1", "formIntegrante2");
 
   if (compararNombres("formIntegrante1", "formIntegrante2") == true) {
@@ -14,7 +19,13 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Los apellidos son diferentes");
     }
   }
-});
+}
+
+function resetColors() {
+  document.querySelectorAll("input").forEach(function (input) {
+    input.style.color = "black";
+  });
+}
 
 function generarNombre(formId) {
   let form = document.getElementById(formId);
@@ -46,20 +57,23 @@ function destacarNombresCoincidentes(formId1, formId2, color = "red") {
       color;
     document.querySelector(`#${formId2} input[name="nombre"]`).style.color =
       color;
-  } else if (integrante1.segundoNombre == integrante2.segundoNombre) {
+  }
+  if (integrante1.segundoNombre == integrante2.segundoNombre) {
     document.querySelector(
       `#${formId1} input[name="segundoNombre"]`
     ).style.color = color;
     document.querySelector(
       `#${formId2} input[name="segundoNombre"]`
     ).style.color = color;
-  } else if (integrante1.nombre == integrante2.segundoNombre) {
+  }
+  if (integrante1.nombre == integrante2.segundoNombre) {
     document.querySelector(`#${formId1} input[name="nombre"]`).style.color =
       color;
     document.querySelector(
       `#${formId2} input[name="segundoNombre"]`
     ).style.color = color;
-  } else if (integrante1.segundoNombre == integrante2.nombre) {
+  }
+  if (integrante1.segundoNombre == integrante2.nombre) {
     document.querySelector(
       `#${formId1} input[name="segundoNombre"]`
     ).style.color = color;
@@ -77,20 +91,23 @@ function destacarApellidosCoincidentes(formId1, formId2, color) {
       color;
     document.querySelector(`#${formId2} input[name="apellido"]`).style.color =
       color;
-  } else if (integrante1.segundoApellido == integrante2.segundoApellido) {
+  }
+  if (integrante1.segundoApellido == integrante2.segundoApellido) {
     document.querySelector(
       `#${formId1} input[name="segundoApellido"]`
     ).style.color = color;
     document.querySelector(
       `#${formId2} input[name="segundoApellido"]`
     ).style.color = color;
-  } else if (integrante1.apellido == integrante2.segundoApellido) {
+  }
+  if (integrante1.apellido == integrante2.segundoApellido) {
     document.querySelector(`#${formId1} input[name="apellido"]`).style.color =
       color;
     document.querySelector(
       `#${formId2} input[name="segundoApellido"]`
     ).style.color = color;
-  } else if (integrante1.segundoApellido == integrante2.apellido) {
+  }
+  if (integrante1.segundoApellido == integrante2.apellido) {
     document.querySelector(
       `#${formId1} input[name="segundoApellido"]`
     ).style.color = color;
@@ -145,5 +162,5 @@ function mostrarNombresCompletos(formId1, formId2) {
 }
 
 function EventoClickFormulario(event, formId) {
-  mostrarNombresCompletos("formIntegrante1", "formIntegrante2");
+  validarDatos();
 }
