@@ -1,65 +1,59 @@
 document.addEventListener("DOMContentLoaded", function () {
-  function obtenerDatosFormulario(formId) {
-    var formulario = document.getElementById(formId);
-    var datos = {};
+  mostrarNombresCompletos("formIntegrante1", "formIntegrante2");
 
-    formulario.querySelectorAll("input").forEach(function (input) {
-      datos[input.id] = input.value;
-    });
-
-    return datos;
-  }
-
-  window.completarFormulario = function () {
-    var datosIntegrante1 = obtenerDatosFormulario("formIntegrante1");
-    var datosIntegrante2 = obtenerDatosFormulario("formIntegrante2");
-
-    console.log("-----");
-    console.log(
-      "Integrante 1:",
-      obtenerNombreCompletoFormulario(datosIntegrante1)
-    );
-    console.log(
-      "Integrante 2:",
-      obtenerNombreCompletoFormulario(datosIntegrante2)
-    );
-    console.log("-----");
-
-    var compararApellidos = confirm("¿Deseas comparar los apellidos?");
-    if (compararApellidos) {
-    }
-  };
-
-  function obtenerNombreCompletoFormulario(datos) {
-    var nombres = [datos.nombre, datos.segundoNombre];
-    var apellidos = [datos.apellido, datos.segundoApellido];
-
-    nombres = nombres.filter(function (nombre) {
-      return nombre.trim() !== "";
-    });
-
-    apellidos = apellidos.filter(function (apellido) {
-      return apellido.trim() !== "";
-    });
-
-    var nombreCompleto = nombres.join(" ") + " " + apellidos.join(" ");
-
-    return nombreCompleto.toUpperCase();
+  if (compararNombres("formIntegrante1", "formIntegrante2") == true) {
+    console.log("Los nombres son iguales");
+  } else {
+    console.log("Los nombres son diferentes");
   }
 });
 
-handleSubmitForm1.addEventListener("click", () => {
-  let nombre = document.getElementById("nombre1").value;
-  let segundoNombre = document.getElementById("segundoNombre1").value;
-  let apellido = document.getElementById("apellido1").value;
-  let segundoApellido = document.getElementById("segundoApellido1").value;
+function generarNombre(formId) {
+  let form = document.getElementById(formId);
 
-  let datos = {
-    nombre,
-    segundoNombre,
-    apellido,
-    segundoApellido,
-  };
+  let datos = {};
+  form.querySelectorAll("input").forEach(function (input) {
+    datos[input.name] = input.value;
+  });
 
-  console.log(datos);
-});
+  datos.apellido = datos.apellido.toUpperCase();
+  datos.segundoApellido = datos.segundoApellido.toUpperCase();
+  return datos;
+}
+
+function nombreCompleto(formId) {
+  let integrante = generarNombre(formId);
+  return `${integrante.nombre} ${integrante.segundoNombre} ${integrante.apellido} ${integrante.segundoApellido}`.replace(
+    /\s{2,}/g,
+    " "
+  );
+}
+
+function compararNombres(formId1, formId2) {
+  let integrante1 = generarNombre(formId1);
+  let integrante2 = generarNombre(formId2);
+
+  if (
+    integrante1.nombre == integrante2.nombre ||
+    integrante1.segundoNombre == integrante2.segundoNombre ||
+    integrante1.nombre == integrante2.segundoNombre ||
+    integrante1.segundoNombre == integrante2.nombre
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function mostrarNombresCompletos(formId1, formId2) {
+  console.log(`
+  -----
+  Integrante 1: ${nombreCompleto(formId1)}
+  Integrante 2: ${nombreCompleto(formId2)}
+  -----
+  `);
+}
+
+function EventoClickFormulario(event, formId) {
+  event.preventDefault();
+}
