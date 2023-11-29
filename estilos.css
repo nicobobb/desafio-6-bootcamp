@@ -54,6 +54,10 @@ dd {
   margin-bottom: 10px;
 }
 
+.integrantes {
+  text-align: center;
+}
+
 @media screen and (max-width: 600px) {
   .sectionPage {
     margin: 10px;
