@@ -37,7 +37,7 @@ function nombreCompleto(formId) {
   );
 }
 
-function destacarCoincidentes(formId1, formId2, color = "red") {
+function destacarNombresCoincidentes(formId1, formId2, color = "red") {
   let integrante1 = generarNombre(formId1);
   let integrante2 = generarNombre(formId2);
 
@@ -68,6 +68,37 @@ function destacarCoincidentes(formId1, formId2, color = "red") {
   }
 }
 
+function destacarApellidosCoincidentes(formId1, formId2, color) {
+  let integrante1 = generarNombre(formId1);
+  let integrante2 = generarNombre(formId2);
+
+  if (integrante1.apellido == integrante2.apellido) {
+    document.querySelector(`#${formId1} input[name="apellido"]`).style.color =
+      color;
+    document.querySelector(`#${formId2} input[name="apellido"]`).style.color =
+      color;
+  } else if (integrante1.segundoApellido == integrante2.segundoApellido) {
+    document.querySelector(
+      `#${formId1} input[name="segundoApellido"]`
+    ).style.color = color;
+    document.querySelector(
+      `#${formId2} input[name="segundoApellido"]`
+    ).style.color = color;
+  } else if (integrante1.apellido == integrante2.segundoApellido) {
+    document.querySelector(`#${formId1} input[name="apellido"]`).style.color =
+      color;
+    document.querySelector(
+      `#${formId2} input[name="segundoApellido"]`
+    ).style.color = color;
+  } else if (integrante1.segundoApellido == integrante2.apellido) {
+    document.querySelector(
+      `#${formId1} input[name="segundoApellido"]`
+    ).style.color = color;
+    document.querySelector(`#${formId2} input[name="apellido"]`).style.color =
+      color;
+  }
+}
+
 function compararNombres(formId1, formId2) {
   let integrante1 = generarNombre(formId1);
   let integrante2 = generarNombre(formId2);
@@ -78,6 +109,8 @@ function compararNombres(formId1, formId2) {
     integrante1.nombre == integrante2.segundoNombre ||
     integrante1.segundoNombre == integrante2.nombre
   ) {
+    let color = prompt("Los nombres son iguales!\nElegir un color:");
+    destacarNombresCoincidentes(formId1, formId2, color);
     return true;
   } else {
     return false;
@@ -94,7 +127,8 @@ function compararApellidos(formId1, formId2) {
     integrante1.apellido == integrante2.segundoApellido ||
     integrante1.segundoApellido == integrante2.apellido
   ) {
-    destacarCoincidentes(formId1, formId2);
+    let color = prompt("Los apellidos son iguales!\nElegir un color:");
+    destacarApellidosCoincidentes(formId1, formId2, color);
     return true;
   } else {
     return false;
