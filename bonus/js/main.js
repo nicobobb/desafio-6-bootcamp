@@ -37,6 +37,37 @@ function nombreCompleto(formId) {
   );
 }
 
+function destacarCoincidentes(formId1, formId2, color = "red") {
+  let integrante1 = generarNombre(formId1);
+  let integrante2 = generarNombre(formId2);
+
+  if (integrante1.nombre == integrante2.nombre) {
+    document.querySelector(`#${formId1} input[name="nombre"]`).style.color =
+      color;
+    document.querySelector(`#${formId2} input[name="nombre"]`).style.color =
+      color;
+  } else if (integrante1.segundoNombre == integrante2.segundoNombre) {
+    document.querySelector(
+      `#${formId1} input[name="segundoNombre"]`
+    ).style.color = color;
+    document.querySelector(
+      `#${formId2} input[name="segundoNombre"]`
+    ).style.color = color;
+  } else if (integrante1.nombre == integrante2.segundoNombre) {
+    document.querySelector(`#${formId1} input[name="nombre"]`).style.color =
+      color;
+    document.querySelector(
+      `#${formId2} input[name="segundoNombre"]`
+    ).style.color = color;
+  } else if (integrante1.segundoNombre == integrante2.nombre) {
+    document.querySelector(
+      `#${formId1} input[name="segundoNombre"]`
+    ).style.color = color;
+    document.querySelector(`#${formId2} input[name="nombre"]`).style.color =
+      color;
+  }
+}
+
 function compararNombres(formId1, formId2) {
   let integrante1 = generarNombre(formId1);
   let integrante2 = generarNombre(formId2);
@@ -63,6 +94,7 @@ function compararApellidos(formId1, formId2) {
     integrante1.apellido == integrante2.segundoApellido ||
     integrante1.segundoApellido == integrante2.apellido
   ) {
+    destacarCoincidentes(formId1, formId2);
     return true;
   } else {
     return false;
